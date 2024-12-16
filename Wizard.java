@@ -12,7 +12,7 @@ public class Wizard implements Contract {
     private int posX;
     private int posY;
 
-    // The wizard's size scale (1 = normal size, < 1 = shrunken, > 1 = grown)
+    // The wizard's wand size scale (1 = normal size, < 1 = shrunken, > 1 = grown)
     private double size;
 
     // The wizard's knowledge level and health
@@ -34,7 +34,6 @@ public class Wizard implements Contract {
      * 
      * @param item The name of the item to grab.
      */
-    @Override
     public void grab(String item) {
         this.currentItem = item;
         System.out.println("Wizard has grabbed " + item + ".");
@@ -46,7 +45,6 @@ public class Wizard implements Contract {
      * @param item The name of the item to drop.
      * @return The name of the item that was dropped, or null if no item was held.
      */
-    @Override
     public String drop(String item) {
         if (this.currentItem != null && this.currentItem.equals(item)) {
             String droppedItem = this.currentItem;
@@ -64,7 +62,6 @@ public class Wizard implements Contract {
      * 
      * @param item The name of the item to examine.
      */
-    @Override
     public void examine(String item) {
         System.out.println("Wizard examines " + item + " closely. It looks magical!");
     }
@@ -74,7 +71,6 @@ public class Wizard implements Contract {
      * 
      * @param item The name of the item to use.
      */
-    @Override
     public void use(String item) {
         if (this.currentItem != null && this.currentItem.equals(item)) {
             System.out.println("Wizard uses " + item + ". A spell is cast!");
@@ -89,7 +85,6 @@ public class Wizard implements Contract {
      * @param direction The direction to walk ("north", "south", "east", "west").
      * @return true if the wizard moves successfully; false otherwise.
      */
-    @Override
     public boolean walk(String direction) {
         switch (direction.toLowerCase()) {
             case "north": posY += 1; break;
@@ -111,7 +106,6 @@ public class Wizard implements Contract {
      * @param y The y-coordinate to fly to.
      * @return true if the wizard flies successfully; false otherwise.
      */
-    @Override
     public boolean fly(int x, int y) {
         posX = x;
         posY = y;
@@ -120,11 +114,10 @@ public class Wizard implements Contract {
     }
 
     /**
-     * Shrinks the wizard's size by half.
+     * Shrinks the wizard's wand size by half.
      * 
      * @return The new size of the wizard after shrinking.
      */
-    @Override
     public Number shrink() {
         size /= 2;
         System.out.println("Wizard shrinks to size " + size + ".");
@@ -136,7 +129,7 @@ public class Wizard implements Contract {
      * 
      * @return The new size of the wizard after growing.
      */
-    @Override
+
     public Number grow() {
         size *= 2;
         System.out.println("Wizard grows to size " + size + ".");
@@ -146,17 +139,18 @@ public class Wizard implements Contract {
     /**
      * Rests to regain strength.
      */
-    @Override
+
     public void rest() {
         health += 10;
-        if (health > 100) health = 100;  // Cap health at 100
+        if (health > 100) {
+            health = 100;
+        }  // Cap health at 100
         System.out.println("Wizard rests to regain strength.");
     }
 
     /**
      * Undoes the last action. (Placeholder for undo functionality.)
      */
-    @Override
     public void undo() {
         System.out.println("Wizard attempts to undo the last action.");
     }
@@ -195,7 +189,9 @@ public class Wizard implements Contract {
      */
     public Number eat() {
         health += 10;
-        if (health > 100) health = 100;  // Cap health at 100
+        if (health > 100) {
+            health = 100; 
+        } 
         System.out.println("Wizard eats and regains health. Health is now " + health + ".");
         return health;
     }

@@ -10,7 +10,7 @@ Listed below are various aspects of the assignment.  When you turn in your work,
 
 ## Assignment Points:
 
-_____ 10 pts: The class meaningfully implements each of the methods in described in the `Contract` interface:
+_yes__ 10 pts: The class meaningfully implements each of the methods in described in the `Contract` interface:
 
       _yes_ `void grab(String item);`
       _yes_ `String drop(String item);`
